@@ -1,0 +1,7 @@
+server:
+  port: 8070
+baidu:
+  ocr:
+    appId: 19500550
+    apiKey: HAXTy5W7hYfr5oZCZUpDaVkV
+    secretKey: y9Giz6wXPguR45YGo2i3oxPGpo0HhnZ6
