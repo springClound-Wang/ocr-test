@@ -183,7 +183,7 @@ public class OcrApi {
                     "        \"top\": 484,\n" +
                     "        \"width\": 283\n" +
                     "      },\n" +
-                    "      \"words\": \"卤鸡腿不是很辣,一般温度\"\n" +
+                    "      \"words\": \"卤鸡腿不是很辣\"\n" +
                     "    },\n" +
                     "    {\n" +
                     "      \"location\": {\n" +
