@@ -18,5 +18,9 @@ public class BillInfo {
     String totalAmount;
     //总数量
     Integer totalNum;
+    //总数据
+    String data;
+    //图片类型是否正确
+    boolean imgType;
 
 }

@@ -62,8 +62,15 @@ public class OcrApi {
 
     @PostMapping("/upFile")
     public String upFile(@RequestParam("ocr")MultipartFile ocr,@RequestParam("type") Integer type){
+        String dataJson=  Receipt.receipt(ocr);
+        JSONObject resultObjectData= JSON.parseObject(dataJson);
+        JSONArray arrayResultData= resultObjectData.getJSONArray("words_result");
         //美团1
         if(type==1){
+            String data= getStringJonData(dataJson, arrayResultData,"美团");
+            if(data!=null){
+                return data;
+            }
             String result="{\n" +
                     "  \"log_id\": 6529868182750349078,\n" +
                     "  \"type\": 4,\n" +
@@ -365,6 +372,10 @@ public class OcrApi {
         }
         //饿了么2
         else if(type==2){
+            String data= getStringJonData(dataJson, arrayResultData,"饿了么");
+            if(data!=null){
+                return data;
+            }
             String result="{\"log_id\": 3588465884264690553, \"words_result_num\": 17, \"words_result\": [{\"location\": {\"width\": 222, \"top\": 0, \"left\": 95, \"height\": 48}, \"words\": \"#24饿了么\"}, {\"location\": {\"width\": 217, \"top\": 65, \"left\": 99, \"height\": 26}, \"words\": \"*米多面多(宜山路店)\"}, {\"location\": {\"width\": 301, \"top\": 112, \"left\": 51, \"height\": 48}, \"words\": \"--已在线支付-\"}, {\"location\": {\"width\": 243, \"top\": 205, \"left\": 32, \"height\": 25}, \"words\": \"期望送达时间:立即配送\"}, {\"location\": {\"width\": 321, \"top\": 225, \"left\": 33, \"height\": 34}, \"words\": \"下单时间:2020-04-2311:18:47\"}, {\"location\": {\"width\": 326, \"top\": 252, \"left\": 29, \"height\": 30}, \"words\": \"订单编号:3062701954571429103\"}, {\"location\": {\"width\": 289, \"top\": 283, \"left\": 102, \"height\": 22}, \"words\": \"------号-篮子-----\"}, {\"location\": {\"width\": 272, \"top\": 309, \"left\": 26, \"height\": 48}, \"words\": \"豆角焖面+蛋花汤+秘制丸子\"}, {\"location\": {\"width\": 118, \"top\": 349, \"left\": 281, \"height\": 48}, \"words\": \"145.88\"}, {\"location\": {\"width\": 208, \"top\": 422, \"left\": 24, \"height\": 30}, \"words\": \"[单品折扣:-13.76]\"}, {\"location\": {\"width\": 184, \"top\": 452, \"left\": 40, \"height\": 25}, \"words\": \"首次光顾立减:-1\"}, {\"location\": {\"width\": 255, \"top\": 478, \"left\": 23, \"height\": 27}, \"words\": \"[超级会员专享红包:-4]\"}, {\"location\": {\"width\": 130, \"top\": 534, \"left\": 24, \"height\": 26}, \"words\": \"餐盒费:￥2\"}, {\"location\": {\"width\": 154, \"top\": 563, \"left\": 22, \"height\": 25}, \"words\": \"配送费:￥0.8\"}, {\"location\": {\"width\": 154, \"top\": 589, \"left\": 22, \"height\": 29}, \"words\": \"原价:￥48.68\"}, {\"location\": {\"width\": 302, \"top\": 615, \"left\": 22, \"height\": 57}, \"words\": \"实付:￥29.92\"}, {\"location\": {\"width\": 340, \"top\": 724, \"left\": 28, \"height\": 73}, \"words\": \"191267754,19\"}]}";
             JSONObject resultObject= JSON.parseObject(result);
             JSONArray arrayResult= resultObject.getJSONArray("words_result");
@@ -404,6 +415,10 @@ public class OcrApi {
         }
         //优衣库3
         else if(type ==3){
+            String data= getStringJonData(dataJson, arrayResultData,"优衣库");
+            if(data!=null){
+                return data;
+            }
             String result="{\"log_id\": 991663240474048921, \"words_result_num\": 34, \"words_result\": [{\"location\": {\"width\": 139, \"top\": 0, \"left\": 396, \"height\": 52}, \"words\": \" QLO\"}, {\"location\": {\"width\": 115, \"top\": 78, \"left\": 407, \"height\": 40}, \"words\": \"优衣库\"}, {\"location\": {\"width\": 394, \"top\": 151, \"left\": 191, \"height\": 44}, \"words\": \"商店名称:上海虹桥天地优衣库店\"}, {\"location\": {\"width\": 386, \"top\": 183, \"left\": 188, \"height\": 40}, \"words\": \"地址:上海市闵行区申长路688号\"}, {\"location\": {\"width\": 131, \"top\": 217, \"left\": 265, \"height\": 30}, \"words\": \"虹桥天地2F\"}, {\"location\": {\"width\": 239, \"top\": 248, \"left\": 184, \"height\": 36}, \"words\": \"电话:021-61679509\"}, {\"location\": {\"width\": 353, \"top\": 285, \"left\": 183, \"height\": 28}, \"words\": \"欢迎登陆官网wwn. unig lo.com\"}, {\"location\": {\"width\": 67, \"top\": 318, \"left\": 208, \"height\": 29}, \"words\": \"顾客\"}, {\"location\": {\"width\": 180, \"top\": 313, \"left\": 398, \"height\": 23}, \"words\": \"703******1841\"}, {\"location\": {\"width\": 313, \"top\": 371, \"left\": 187, \"height\": 45}, \"words\": \"2000140521906×1R\"}, {\"location\": {\"width\": 100, \"top\": 371, \"left\": 639, \"height\": 31}, \"words\": \"99.00T\"}, {\"location\": {\"width\": 191, \"top\": 409, \"left\": 181, \"height\": 47}, \"words\": \"圆领T恤(短袖)\"}, {\"location\": {\"width\": 320, \"top\": 475, \"left\": 185, \"height\": 51}, \"words\": \"2000140522705×1R\"}, {\"location\": {\"width\": 105, \"top\": 470, \"left\": 648, \"height\": 32}, \"words\": \"99.00\"}, {\"location\": {\"width\": 195, \"top\": 518, \"left\": 178, \"height\": 50}, \"words\": \"圆领T恤(短袖)\"}, {\"location\": {\"width\": 330, \"top\": 588, \"left\": 182, \"height\": 58}, \"words\": \"2000139718119×1R\"}, {\"location\": {\"width\": 128, \"top\": 574, \"left\": 637, \"height\": 42}, \"words\": \"149.00\"}, {\"location\": {\"width\": 211, \"top\": 636, \"left\": 183, \"height\": 54}, \"words\": \"棉质松紧九分裤\"}, {\"location\": {\"width\": 317, \"top\": 714, \"left\": 199, \"height\": 52}, \"words\": \"20001315036761R\"}, {\"location\": {\"width\": 131, \"top\": 696, \"left\": 642, \"height\": 41}, \"words\": \"149.00T\"}, {\"location\": {\"width\": 356, \"top\": 751, \"left\": 198, \"height\": 58}, \"words\": \"优质长绒棉条纹衬衫(长袖)\"}, {\"location\": {\"width\": 74, \"top\": 848, \"left\": 209, \"height\": 33}, \"words\": \" Total\"}, {\"location\": {\"width\": 94, \"top\": 828, \"left\": 653, \"height\": 34}, \"words\": \"496.00\"}, {\"location\": {\"width\": 44, \"top\": 953, \"left\": 485, \"height\": 31}, \"words\": \" RME\"}, {\"location\": {\"width\": 89, \"top\": 946, \"left\": 662, \"height\": 30}, \"words\": \"496.00\"}, {\"location\": {\"width\": 88, \"top\": 968, \"left\": 216, \"height\": 34}, \"words\": \" Alipay\"}, {\"location\": {\"width\": 556, \"top\": 977, \"left\": 233, \"height\": 65}, \"words\": \"交易号:2020041722001447951414982709\"}, {\"location\": {\"width\": 557, \"top\": 1015, \"left\": 235, \"height\": 69}, \"words\": \"订单号:1305420301012220200417210526\"}, {\"location\": {\"width\": 208, \"top\": 1076, \"left\": 237, \"height\": 48}, \"words\": \"商家优惠:0.00\"}, {\"location\": {\"width\": 202, \"top\": 1120, \"left\": 243, \"height\": 41}, \"words\": \"平台优惠:0.00\"}, {\"location\": {\"width\": 598, \"top\": 1248, \"left\": 235, \"height\": 84}, \"words\": \"日期时间店铺P0S员工交易号\"}, {\"location\": {\"width\": 567, \"top\": 1326, \"left\": 241, \"height\": 80}, \"words\": \"1/04/202021:0554231326563122\"}, {\"location\": {\"width\": 251, \"top\": 1395, \"left\": 246, \"height\": 36}, \"words\": \" You were served by\"}, {\"location\": {\"width\": 133, \"top\": 1376, \"left\": 617, \"height\": 37}, \"words\": \" CHEN PING\"}]}";
             JSONObject resultObject= JSON.parseObject(result);
             JSONArray arrayResult= resultObject.getJSONArray("words_result");
@@ -465,6 +480,10 @@ public class OcrApi {
         }
         //永辉4
         else if(type==4){
+            String data= getStringJonData(dataJson, arrayResultData,"辉");
+            if(data!=null){
+                return data;
+            }
             String result="{\"log_id\": 4822312228881522169, \"words_result_num\": 33, \"words_result\": [{\"location\": {\"width\": 136, \"top\": 8, \"left\": 91, \"height\": 18}, \"words\": \"欢迎光临辉超市\"}, {\"location\": {\"width\": 118, \"top\": 28, \"left\": 99, \"height\": 18}, \"words\": \"朝阳区太阳宫店\"}, {\"location\": {\"width\": 275, \"top\": 68, \"left\": 21, \"height\": 21}, \"words\": \"店号:93222018/10/2315:40:20\"}, {\"location\": {\"width\": 262, \"top\": 89, \"left\": 23, \"height\": 20}, \"words\": \"收银机号:TY23小票号:03975633\"}, {\"location\": {\"width\": 264, \"top\": 110, \"left\": 22, \"height\": 20}, \"words\": \"收银员:80685646类型:零售销售\"}, {\"location\": {\"width\": 271, \"top\": 132, \"left\": 23, \"height\": 20}, \"words\": \"商品名称数量单价成交价\"}, {\"location\": {\"width\": 94, \"top\": 174, \"left\": 24, \"height\": 19}, \"words\": \"卤水豆腐\"}, {\"location\": {\"width\": 128, \"top\": 196, \"left\": 24, \"height\": 17}, \"words\": \"23067170026021\"}, {\"location\": {\"width\": 37, \"top\": 195, \"left\": 256, \"height\": 19}, \"words\": \"2.60\"}, {\"location\": {\"width\": 59, \"top\": 216, \"left\": 28, \"height\": 19}, \"words\": \"油菜\"}, {\"location\": {\"width\": 127, \"top\": 237, \"left\": 24, \"height\": 17}, \"words\": \"23000340015551\"}, {\"location\": {\"width\": 36, \"top\": 236, \"left\": 257, \"height\": 19}, \"words\": \"1.55\"}, {\"location\": {\"width\": 93, \"top\": 257, \"left\": 33, \"height\": 20}, \"words\": \"瑞嘉猪肘\"}, {\"location\": {\"width\": 126, \"top\": 279, \"left\": 25, \"height\": 17}, \"words\": \"23073990397331\"}, {\"location\": {\"width\": 45, \"top\": 278, \"left\": 250, \"height\": 19}, \"words\": \"39.73\"}, {\"location\": {\"width\": 108, \"top\": 298, \"left\": 29, \"height\": 20}, \"words\": \"白梨(二级)\"}, {\"location\": {\"width\": 124, \"top\": 320, \"left\": 29, \"height\": 17}, \"words\": \"23014600032271\"}, {\"location\": {\"width\": 36, \"top\": 321, \"left\": 257, \"height\": 17}, \"words\": \"3.22\"}, {\"location\": {\"width\": 120, \"top\": 343, \"left\": 29, \"height\": 12}, \"words\": \"===\"}, {\"location\": {\"width\": 43, \"top\": 359, \"left\": 26, \"height\": 19}, \"words\": \"应收\"}, {\"location\": {\"width\": 126, \"top\": 360, \"left\": 126, \"height\": 18}, \"words\": \"47.10件数:4\"}, {\"location\": {\"width\": 248, \"top\": 379, \"left\": 28, \"height\": 20}, \"words\": \"实收:47.10找零:0.00\"}, {\"location\": {\"width\": 67, \"top\": 419, \"left\": 28, \"height\": 18}, \"words\": \"微信支付\"}, {\"location\": {\"width\": 39, \"top\": 421, \"left\": 245, \"height\": 16}, \"words\": \"47.10\"}, {\"location\": {\"width\": 124, \"top\": 438, \"left\": 28, \"height\": 17}, \"words\": \"实际扣款:47.10\"}, {\"location\": {\"width\": 62, \"top\": 458, \"left\": 27, \"height\": 17}, \"words\": \"订单号:\"}, {\"location\": {\"width\": 236, \"top\": 478, \"left\": 27, \"height\": 21}, \"words\": \"6521100002201810231253911704\"}, {\"location\": {\"width\": 165, \"top\": 500, \"left\": 27, \"height\": 18}, \"words\": \"会员帐号:1-19200846\"}, {\"location\": {\"width\": 184, \"top\": 520, \"left\": 68, \"height\": 18}, \"words\": \"客服电话:010-84241299\"}, {\"location\": {\"width\": 266, \"top\": 537, \"left\": 28, \"height\": 25}, \"words\": \"请当面清点所购商品和找零,并保管\"}, {\"location\": {\"width\": 267, \"top\": 555, \"left\": 26, \"height\": 29}, \"words\": \"好收银小票以做开发票,退换货凭证\"}, {\"location\": {\"width\": 237, \"top\": 576, \"left\": 40, \"height\": 30}, \"words\": \"请至服务台索取分币,谢谢惠顾\"}, {\"location\": {\"width\": 238, \"top\": 596, \"left\": 21, \"height\": 32}, \"words\": \"积分查询请登录www. yonghui.cn\"}]}";
             JSONObject resultObject= JSON.parseObject(result);
             JSONArray arrayResult= resultObject.getJSONArray("words_result");
@@ -531,8 +550,29 @@ public class OcrApi {
         else{
             return "参数有误";
         }
-       //return  Receipt.receipt(ocr);
 
+    }
+
+    private String getStringJonData(String dataJson, JSONArray arrayResultData,String data) {
+        if(!getOcrTypeData(arrayResultData,data)){
+            BillInfo billInfo=new BillInfo();
+            billInfo.setImgType(false);
+            billInfo.setData(dataJson);
+            return JSON.toJSONString(billInfo);
+        }
+        return null;
+    }
+
+    private boolean getOcrTypeData(JSONArray arrayResultData,String data) {
+        for(int i=0;i<arrayResultData.size();i++){
+
+            JSONObject jsonObject = arrayResultData.getJSONObject(i);
+            String wordsStr=jsonObject.getString("words");
+            if(wordsStr.contains(data)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {
