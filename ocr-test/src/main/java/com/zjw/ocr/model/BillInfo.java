@@ -21,6 +21,6 @@ public class BillInfo {
     //总数据
     String data;
     //图片类型是否正确
-    boolean imgType;
+    boolean imgType=true;
 
 }
