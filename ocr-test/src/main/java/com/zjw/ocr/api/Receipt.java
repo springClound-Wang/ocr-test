@@ -32,8 +32,9 @@ public class Receipt {
 
             String param = "image=" + imgParam;
 
+            // https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=HAXTy5W7hYfr5oZCZUpDaVkV&client_secret=y9Giz6wXPguR45YGo2i3oxPGpo0HhnZ6
             // 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
-            String accessToken = "24.91695167a24f7be5f660e19fb9f77e63.2592000.1589873960.282335-19499621";
+            String accessToken = "24.c8d32c4c697642d8ea30a7b1f4c48ac8.2592000.1592804613.282335-19500550";
 
             String result = HttpUtil.post(url, accessToken, param);
             System.out.println(result);
